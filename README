@@ -1,0 +1,16 @@
+# SOMPAK for Ruby
+
+A ruby binding to the SOMPAK toolkit. A work in progress. C-code related to
+map initialization and SOM have ruby bindings. Classification is based on
+pure ruby code.
+
+## Testing SOMPAK_4R
+
+  1. Create the ruby binding
+      +  cd sompak_4r; ruby extconf.rb; make
+      +  cp sompak4r.so ../som/lib
+      +  cd ..
+      +  ruby test_som.rb
+
+
+Stay tuned as I continue to update this README

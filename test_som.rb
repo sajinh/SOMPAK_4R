@@ -1,4 +1,4 @@
-require 'som/som'
+require './som/som'
 require 'pp' # to pretty print ruby objects
 
 dataf="animal.dat"            # input data, given in SOM format

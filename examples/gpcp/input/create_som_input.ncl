@@ -28,6 +28,9 @@ begin
   ntim=ndims(0)
   nlat=ndims(1)
   nlon=ndims(2)
+print(nlat)
+print(nlon)
+exit
   nxy = nlat*nlon
 
   funit=10

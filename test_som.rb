@@ -52,4 +52,5 @@ som.vis_map(sample_data,sample_lbl,map)
 # See the contents of each node in the SOM Map
 #pp som.inspect
 #pp som[0]
-#puts som.mqe
+puts som.node_qe
+puts som.mqe

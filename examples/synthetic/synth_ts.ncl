@@ -10,6 +10,7 @@ months = ispan(1,nmon,1)*1.0 ; keep type as float
 PI = 3.14
 
 rain = new( (/nens*ngrp,nmon/), typeof(ts))
+rain@FillValue=-999.0
 
 ; Group 1 (a sine curve)
 ts(0,:) =  sin(2*PI*(months/nmon))
@@ -19,6 +20,7 @@ ts(1,:) =  -1.0*sin(2*PI*((months+1)/nmon))
 
 ; Group 3 (step. function with max in July and Aug)
 ts(2,6:7) = 1.0
+;DebugGraph(ts(0:2,:))
 
 ; Group 4 (step. function with max in May to Oct)
 ts(3,4:9) = 1.0
@@ -35,10 +37,14 @@ ts(5,0:3) = 1.0
 k = 0
 do iens = 0,nens-1
   do ig = 0,ngrp-1
-    rain(k,:) = ts(ig,:) ;+ts(ig,:)*random_normal(avg(ts(ig,:)),0.2,nmon)
+    rain(k,:) = ts(ig,:) +ts(ig,:)*random_normal(avg(ts(ig,:)),0.2,nmon)
+    ; Add missing value at random locations
+    rind=toint(random_uniform(1,12,2))
+    rain(k,rind) = rain@FillValue
     k = k+1
   end do
 end do
+;DebugGraph(rain(:20,:))
 
 add_dimensions(rain,(/"station","month"/))
 rain&station=ispan(1,nstn,1)

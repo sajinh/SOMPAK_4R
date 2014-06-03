@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'numru/netcdf'
 require 'pp'
 include NumRu
@@ -18,8 +19,13 @@ ntim,nstn = rain.shape
 fout = File.open("synth.txt","w")
 fout.puts "#{ntim} rect 2 2 gaussian"
 (0..nstn-1).each do |istn|
-  txt = rain[true,istn]
-  fout.puts txt.to_a.map{|f| "% 2.2f"%f}.join(" ")+" #{"%02d" % station[istn]}"
+
+  txt = (rain[true,istn]).to_a.map do |s| 
+
+    v="%2.2f"%s
+    v.gsub("-999.00", "x")
+  end
+  fout.puts txt.join(" ")+" #{"%02d" % station[istn]}"
 end
 fout.close
 

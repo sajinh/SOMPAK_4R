@@ -1,4 +1,4 @@
-require "#{ENV["HOME"]}/SOMPAK_4R/som/som"
+require "#{ENV["RUBY_LIBS"]}/SOMPAK_4R/som/som"
 require 'pp' # to pretty print ruby objects
 
 dataf="../synth.txt"   # input data, given in SOM format
@@ -61,7 +61,7 @@ som.classify(sample_data,map)
   unless som[i][:members].empty?
     fname="./node_members/som"+xy.join("_")
     fout=File.new(fname,"w")
-    fout.puts( (som[i][:members]).map { |i|  sample_lbl[i]} )
+    fout.puts( (som[i][:members]).map { |m|  sample_lbl[m]} )
     fout.close
   end
 
